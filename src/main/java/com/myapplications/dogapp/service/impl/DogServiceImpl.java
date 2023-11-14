@@ -38,4 +38,21 @@ public class DogServiceImpl implements DogService {
         return dogs.stream().map((dog) -> DogMapper.mapToDogDto(dog))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public DogDto updateDog(Long dogId, DogDto updatedDog) {
+        Dog dog = dogRepository.findById(dogId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Dog with the ID " + dogId + " does not exist")
+                );
+
+        dog.setName(updatedDog.getName());
+        dog.setBreed(updatedDog.getBreed());
+        dog.setBirthday(updatedDog.getBirthday());
+        dog.setOwner(updatedDog.getOwner());
+
+        Dog updatedDogObj = dogRepository.save(dog);
+
+        return DogMapper.mapToDogDto(updatedDogObj);
+    }
 }

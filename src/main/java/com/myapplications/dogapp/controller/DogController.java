@@ -33,4 +33,10 @@ public class DogController {
         return ResponseEntity.ok(dogs);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<DogDto> updateDog(@PathVariable("id") Long dogId, @RequestBody DogDto updatedDog) {
+        DogDto dogDto = dogService.updateDog(dogId, updatedDog);
+        return ResponseEntity.ok(dogDto);
+    }
+
 }

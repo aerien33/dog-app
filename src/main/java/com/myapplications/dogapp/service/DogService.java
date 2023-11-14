@@ -8,4 +8,5 @@ public interface DogService {
     DogDto createDog(DogDto dogDto);
     DogDto getDogById(Long dogId);
     List<DogDto> getAllDogs();
+    DogDto updateDog(Long dogId, DogDto updatedDog);
 }
