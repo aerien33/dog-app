@@ -9,4 +9,5 @@ public interface DogService {
     DogDto getDogById(Long dogId);
     List<DogDto> getAllDogs();
     DogDto updateDog(Long dogId, DogDto updatedDog);
+    void deleteDog(Long dogId);
 }

@@ -39,4 +39,10 @@ public class DogController {
         return ResponseEntity.ok(dogDto);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteDog(@PathVariable("id") Long dogId){
+        dogService.deleteDog(dogId);
+        return ResponseEntity.ok("Dog deleted successfully!");
+    }
+
 }

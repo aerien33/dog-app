@@ -55,4 +55,13 @@ public class DogServiceImpl implements DogService {
 
         return DogMapper.mapToDogDto(updatedDogObj);
     }
+
+    @Override
+    public void deleteDog(Long dogId) {
+        Dog dog = dogRepository.findById(dogId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Dog with the ID " + dogId + " does not exist")
+                );
+        dogRepository.deleteById(dogId);
+    }
 }
