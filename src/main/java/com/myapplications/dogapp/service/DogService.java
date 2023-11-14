@@ -4,4 +4,5 @@ import com.myapplications.dogapp.dto.DogDto;
 
 public interface DogService {
     DogDto createDog(DogDto dogDto);
+    DogDto getDogById(Long dogId);
 }

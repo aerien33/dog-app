@@ -21,4 +21,10 @@ public class DogController {
         return new ResponseEntity<>(savedDog, HttpStatus.CREATED);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<DogDto> getDogById(@PathVariable("id") Long dogId) {
+        DogDto dogDto = dogService.getDogById(dogId);
+        return ResponseEntity.ok(dogDto);
+    }
+
 }
