@@ -9,6 +9,9 @@ import com.myapplications.dogapp.service.DogService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class DogServiceImpl implements DogService {
@@ -27,5 +30,12 @@ public class DogServiceImpl implements DogService {
                         new ResourceNotFoundException("Dog with the ID " + dogId + " does not exist")
                 );
         return DogMapper.mapToDogDto(dog);
+    }
+
+    @Override
+    public List<DogDto> getAllDogs() {
+        List<Dog> dogs = dogRepository.findAll();
+        return dogs.stream().map((dog) -> DogMapper.mapToDogDto(dog))
+                .collect(Collectors.toList());
     }
 }

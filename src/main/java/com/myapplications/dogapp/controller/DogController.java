@@ -27,4 +27,10 @@ public class DogController {
         return ResponseEntity.ok(dogDto);
     }
 
+    @GetMapping
+    public ResponseEntity<List<DogDto>> getAllDogs() {
+        List<DogDto> dogs = dogService.getAllDogs();
+        return ResponseEntity.ok(dogs);
+    }
+
 }
