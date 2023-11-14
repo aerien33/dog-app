@@ -23,9 +23,6 @@ public class Dog {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "owner", nullable = false)
-    private String owner;
-
     @Column(name = "breed")
     private String breed;
 
@@ -33,5 +30,8 @@ public class Dog {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
+
+    @Column(name = "owner", nullable = false)
+    private String owner;
 
 }

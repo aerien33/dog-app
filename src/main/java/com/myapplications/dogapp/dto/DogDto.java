@@ -14,7 +14,7 @@ import java.util.Date;
 public class DogDto {
     private Long id;
     private String name;
-    private String owner;
     private String breed;
     private Date birthday;
+    private String owner;
 }
