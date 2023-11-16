@@ -3,9 +3,11 @@ package com.myapplications.dogapp.controller;
 import com.myapplications.dogapp.dto.DogDto;
 import com.myapplications.dogapp.service.DogService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -13,6 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/dogs")
 public class DogController {
+
+    @Value("${spring.application.name}")
+    String dogApp;
+
     private DogService dogService;
 
     @PostMapping
@@ -28,10 +34,19 @@ public class DogController {
     }
 
     @GetMapping
+    public ModelAndView homePage() {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("dogApp", dogApp);
+        return modelAndView;
+    }
+
+    /*
+    @GetMapping
     public ResponseEntity<List<DogDto>> getAllDogs() {
         List<DogDto> dogs = dogService.getAllDogs();
         return ResponseEntity.ok(dogs);
     }
+    */
 
     @PutMapping("{id}")
     public ResponseEntity<DogDto> updateDog(@PathVariable("id") Long dogId, @RequestBody DogDto updatedDog) {
